@@ -2,6 +2,7 @@ from textSummarizer.constants import CONFIG_FILE_PATH,PARAMS_FILE_PATH
 from textSummarizer.utils.common import read_yaml_config,create_directorys
 from textSummarizer.entity import DataIngestionConfig
 from textSummarizer.entity import DataValidationConfig
+from textSummarizer.entity import DataTransfromationConfig
 
 # Define the ConfigurationManager class that manages the configuration settings of every entity in the system.
 class ConfigurationManager:
@@ -35,4 +36,17 @@ class ConfigurationManager:
             ALL_REQUIRED_FILES= config.ALL_REQUIRED_FILES
         )
         return data_validation_config
+    
+    def get_data_transformation_config(self) -> DataTransfromationConfig:
+        config = self.config.data_transformation
+
+        create_directorys([config.root_dir])
+
+        data_transformation_config = DataTransfromationConfig(
+            root_dir = config.root_dir,
+            data_path= config.data_path,
+            tokenizer_name= config.tokenizer_name,
+        )
+        return data_transformation_config
+
 
