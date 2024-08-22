@@ -5,6 +5,7 @@ sacrebleu
 rouge_score
 py7zr
 pandas
+numpy == 1.26.4
 nltk
 tqdm
 PyYAML
